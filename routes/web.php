@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Livewire\Auth\Login;
+use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\Invoices;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +20,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth', 'verified'])->group(function () {
+
+
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/invoices', Invoices::class)->name('invoices');
+});
+
+
+
+Route::get('/post', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('post');
+
+require __DIR__ . '/auth.php';
