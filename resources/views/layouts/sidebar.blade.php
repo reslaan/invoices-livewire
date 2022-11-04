@@ -1,4 +1,4 @@
-<aside id="sidebar" class="transition-all  duration-500 min-h-screen w-64  bg-gray-900 text-white">
+<aside id="sidebar" class="transition-all -ml-16 sm:-ml-0 z-10  duration-500  min-h-screen w-64  bg-gray-900 text-white">
     <div class="px-6 pt-8">
         <div class="flex items-center justify-between">
             <a href="#" class="flex items-center justify-center rounded bg-primary p-1.5 px-2"><i
@@ -96,20 +96,28 @@
         </ul>
     </div>
 </aside>
-
+@push('script')
 <script>
     const sidebarBtn = document.getElementById('sidebarBtn');
     const dropMenu = document.querySelectorAll('.treeview-btn');
     const navItems = document.querySelectorAll('li');
     const sidebar = document.getElementById('sidebar');
+    const content = document.querySelector('.content');
 
+// content.style.left = sidebar.offsetWidth +"px"
 
-
-    sidebarBtn.addEventListener('click', function() {
+sidebarBtn.addEventListener('click', function() {
+    // content.style.left = sidebar.offsetWidth +"px" ;
         this.classList.toggle('rotate-180')
         this.classList.toggle('ml-3')
         sidebar.classList.toggle('w-20')
         sidebar.classList.toggle('w-64')
+        content.classList.toggle('ml-20')
+        content.classList.toggle('ml-64')
+
+
+
+
         // const search = document.querySelector('input[type="search"]').parentElement
         // search.classList.toggle('hidden')
         // search.nextSibling.nextSibling.classList.toggle('hidden')
@@ -143,3 +151,5 @@
 
     })
 </script>
+@endpush
+
