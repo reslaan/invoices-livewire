@@ -1,6 +1,6 @@
-<div class="relative  z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div class="relative modal z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
-    <div class="fixed inset-0 bg-gray-800 bg-opacity-50 transition-opacity"></div>
+    <div class="fixed inset-0 bg-gray-800/50  transition-opacity"></div>
 
     <div class="fixed transition-all duration-500 inset-0 z-10 overflow-y-auto">
         <div class="flex min-h-full items-start justify-center p-4 text-center sm:items-center sm:p-0">
@@ -12,8 +12,7 @@
                         <h3 class="text-lg font-medium leading-6 text-dark">
                             {{ $title }}
                         </h3>
-                        <button type="button" wire:click="openModal"
-                            class=" inline-flex w-auto justify-center  text-2xl  focus:outline-none  ">&times;</button>
+                        <button type="button" wire:click="openModal"                            class=" inline-flex w-auto justify-center  text-2xl  focus:outline-none  ">&times;</button>
                     </div>
                 @endif
 
@@ -23,8 +22,7 @@
                     </div>
                 </div>
                 @if (isset($footer))
-                    <div
-                        class="bg-gray-50 px-4 py-3  sm:flex sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4 sm:px-6">
+                    <div class="bg-gray-50 px-4 py-3  sm:flex sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4 sm:px-6">
 
                         {{ $footer }}
                         {{-- <button type="button"

@@ -1,4 +1,4 @@
-<aside id="sidebar" class="transition-all -ml-16 sm:-ml-0 z-10  duration-500  min-h-screen w-64  bg-gray-900 text-white">
+<aside id="sidebar" class="fixed  transition-all -ml-16 sm:-ml-0 z-20  duration-500  min-h-screen w-64  bg-gray-900 text-white">
     <div class="px-6 pt-8">
         <div class="flex items-center justify-between">
             <a href="#" class="flex items-center justify-center rounded bg-primary p-1.5 px-2"><i

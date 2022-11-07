@@ -12,7 +12,7 @@
             <div>
                 <x-input-label for="name" :value="__('Name')" />
 
-                <x-text-input id="name" class="block mt-1 w-full" type="text" wire:model="name" />
+                <x-text-input id="name" class="block mt-1 w-full bg-gray-800 border-gray-700" type="text" wire:model="name" />
 
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
@@ -21,7 +21,7 @@
             <div class="mt-4">
                 <x-input-label for="email" :value="__('Email')" />
 
-                <x-text-input id="email" class="block mt-1 w-full" type="email" wire:model="email"/>
+                <x-text-input id="email" class="block mt-1 w-full bg-gray-800 border-gray-700" type="email" wire:model="email"/>
 
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
@@ -30,7 +30,7 @@
             <div class="mt-4">
                 <x-input-label for="password" :value="__('Password')" />
 
-                <x-text-input id="password" class="block mt-1 w-full"
+                <x-text-input id="password" class="block mt-1 w-full bg-gray-800 border-gray-700"
                                 type="password"
                                 wire:model="password" />
 
@@ -41,7 +41,7 @@
             <div class="mt-4">
                 <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-                <x-text-input id="password_confirmation" class="block mt-1 w-full"
+                <x-text-input id="password_confirmation" class="block mt-1 w-full bg-gray-800 border-gray-700"
                                 type="password"
                                 wire:model="password_confirmation"
                                   />
@@ -50,13 +50,13 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-100" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-primary-button class="ml-4">
+                <x-button.primary class="ml-4">
                     {{ __('Register') }}
-                </x-primary-button>
+                </x-button.primary>
             </div>
         </form>
     </x-auth-card>

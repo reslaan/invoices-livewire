@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Invoices extends Model
+class Invoice extends Model
 {
     use HasFactory;
 
@@ -24,4 +24,19 @@ class Invoices extends Model
         'note',
         'user',
     ];
+
+    public static function search($search)
+    {
+        return empty($search)
+        ? static::query()
+        : static::query()->where('user', 'like' , '%'.$search.'%')
+        ->orWhere('invoice_number' , 'like' , '%'.$search.'%');
+    }
+
+    public function getStatusColorAttribute(){
+        return [
+            "1" => "green",
+            "0" => "red",
+        ][$this->status_value] ?? "secondary";
+    }
 }

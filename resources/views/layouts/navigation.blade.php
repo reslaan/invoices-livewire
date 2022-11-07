@@ -23,9 +23,9 @@
                 </div>
             </div> --}}
             <div class="px-2 sm:px-0 pt-4 w-full sm:w-1/3">
-                <input type="search"
+                {{-- <input type="search"
                     class="w-full rounded-full px-2 py-2.5 text-xs font-light text-gray-400 placeholder-gray-500 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
-                    placeholder="search" />
+                    placeholder="search" /> --}}
             </div>
             <!-- Settings Dropdown -->
             <div class="hidden  sm:flex sm:items-center sm:ml-6">

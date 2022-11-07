@@ -14,8 +14,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>
-    <body>
-        <div class="font-sans bg-gradient-to-br from-primary to-primaryDark antialiased">
+    <body >
+        <div class="font-sans antialiased">
             {{ $slot }}
         </div>
         @livewireScripts

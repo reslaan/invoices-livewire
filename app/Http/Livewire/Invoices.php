@@ -4,14 +4,20 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Invoices as ModelsInvoices;
+use App\Models\Invoice;
 
 class Invoices extends Component
 {
     use WithPagination;
 
     public $modal = false;
-    public $method = '';
+    public $confirmModal = false;
+    public $method = '';  // create or edit
+
+    public $perpage = 10;
+    public $search = '';
+    public $sortField = 'id';
+    public $sortDirection = 'asc';
 
     public $invoiceId = '';
     public $invoice_number = '';
@@ -27,6 +33,8 @@ class Invoices extends Component
     public $note = '';
     public $user = '';
 
+    protected $queryString = ['sortField', 'sortDirection'];
+
     protected $rules = [
         'invoice_number' => ['string', 'max:255'],
         'invoice_date' => ['string', 'max:255'],
@@ -37,25 +45,45 @@ class Invoices extends Component
         'vat_value' => ['required', 'string', 'max:255'],
         'total' => ['required', 'string', 'max:255'],
         'status' => ['required', 'string', 'max:255'],
-        'status_value' => ['required', 'string', 'max:255'],
+        'status_value' => ['required', 'numeric', 'max:255'],
         'note' => ['required', 'string', 'max:255'],
-        'status_value' => ['required', 'string', 'max:255'],
         'user' => ['required', 'string', 'max:255'],
     ];
+
+
     public function openModal($state = null)
     {
-
+        $this->resetErrorBag();
         if (!$state)
             $this->resetExcept('modal');
 
         $this->modal = !$this->modal;
     }
+
+
+    /// sorting table
+    public function sortBy($field)
+    {
+
+
+
+        if ($this->sortField == $field) {
+
+            $this->sortDirection =  $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortDirection = 'asc';
+            $this->sortField = $field;
+        }
+    }
+
+
+
     public function create()
     {
 
         $this->validate();
 
-        $invoice  = ModelsInvoices::create([
+        $invoice  = Invoice::create([
             'invoice_number' => rand(000000, 999999),
             'invoice_date'   => now(),
             'due_date'       => $this->due_date,
@@ -68,10 +96,11 @@ class Invoices extends Component
             'status'       => $this->status,
             'status_value'       => $this->status_value,
             'note'       => $this->note,
-            'user'       => $this->user,
+            'user'       => auth()->user()->name,
         ]);
         $invoice->save();
         $this->openModal();
+        session()->flash('message', 'Invoice successfully Created.');
     }
 
     public function edit($id)
@@ -79,7 +108,7 @@ class Invoices extends Component
 
         $this->invoiceId = $id;
         $this->method = 'edit'; // switch to update button
-        $invoice = ModelsInvoices::find($id);
+        $invoice = Invoice::find($id);
         $this->invoice_number = $invoice->invoice_number;
         $this->invoice_date = $invoice->invoice_date;
         $this->due_date = $invoice->due_date;
@@ -97,7 +126,8 @@ class Invoices extends Component
 
     public function update()
     {
-        $invoice = ModelsInvoices::find($this->invoiceId);
+        $this->validate();
+        $invoice = Invoice::find($this->invoiceId);
         $invoice->update([
             'invoice_number'   => $this->invoice_number,
             'invoice_date'     => $this->invoice_date,
@@ -115,16 +145,30 @@ class Invoices extends Component
         ]);
         $invoice->save();
         $this->openModal('edit');
-
+        session()->flash('message', 'Invoice successfully Updated.');
     }
 
-    public function delete($id){
-        $invoice = ModelsInvoices::find($id);
+    public function confirmDelete($id = '')
+    {
+        $this->confirmModal = !$this->confirmModal;
+        $this->invoiceId = $id;
+    }
+
+    public function delete()
+    {
+
+        $invoice = Invoice::find($this->invoiceId);
         $invoice->delete();
+        $this->confirmModal = !$this->confirmModal;
+        session()->flash('message', 'Invoice successfully Deleted.');
     }
+
     public function render()
     {
-        $invoices = ModelsInvoices::paginate(10);
+        $invoices = Invoice::search($this->search)
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate($this->perpage);
+
         return view('livewire.invoices', [
             'invoices' => $invoices
         ]);
