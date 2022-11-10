@@ -7,12 +7,12 @@
 
             <div
                 class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 w-full sm:max-w-lg">
-                @if (isset($title))
+                @if (isset($header))
                     <div class="bg-gray-50 px-4 py-3 flex sm:flex-row justify-between items-center sm:px-6">
                         <h3 class="text-lg font-medium leading-6 text-dark">
-                            {{ $title }}
+                            {{ $header }}
                         </h3>
-                        <button type="button" wire:click="openModal"                            class=" inline-flex w-auto justify-center  text-2xl  focus:outline-none  ">&times;</button>
+                        <button type="button" wire:click="closeModal"                            class=" inline-flex w-auto justify-center  text-2xl  focus:outline-none  ">&times;</button>
                     </div>
                 @endif
 

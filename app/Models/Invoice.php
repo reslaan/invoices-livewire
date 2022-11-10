@@ -35,8 +35,8 @@ class Invoice extends Model
 
     public function getStatusColorAttribute(){
         return [
-            "1" => "green",
-            "0" => "red",
+            "1" => "success",
+            "0" => "danger",
         ][$this->status_value] ?? "secondary";
     }
 }

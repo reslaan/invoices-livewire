@@ -2,17 +2,16 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Livewire\Traits\withModal;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Invoice;
 
 class Invoices extends Component
 {
-    use WithPagination;
+    use WithPagination, withModal;
 
-    public $modal = false;
-    public $confirmModal = false;
-    public $method = '';  // create or edit
+
 
     public $perpage = 10;
     public $search = '';
@@ -35,6 +34,7 @@ class Invoices extends Component
 
     protected $queryString = ['sortField', 'sortDirection'];
 
+
     protected $rules = [
         'invoice_number' => ['string', 'max:255'],
         'invoice_date' => ['string', 'max:255'],
@@ -51,14 +51,7 @@ class Invoices extends Component
     ];
 
 
-    public function openModal($state = null)
-    {
-        $this->resetErrorBag();
-        if (!$state)
-            $this->resetExcept('modal');
 
-        $this->modal = !$this->modal;
-    }
 
 
     /// sorting table
@@ -78,36 +71,33 @@ class Invoices extends Component
 
 
 
-    public function create()
-    {
+    public function create() {
 
         $this->validate();
 
         $invoice  = Invoice::create([
-            'invoice_number' => rand(000000, 999999),
-            'invoice_date'   => now(),
-            'due_date'       => $this->due_date,
-            'section'       => $this->section,
-            'product'       => 'product',
-            'discount'       => $this->discount,
-            'vat_rate'       => $this->vat_rate,
+            'invoice_number'  => rand(000000, 999999),
+            'invoice_date'    => now(),
+            'due_date'        => $this->due_date,
+            'section'         => $this->section,
+            'product'         => $this->vat_rate,
+            'discount'        => rand(00,100),
+            'vat_rate'        => rand(00,100),
             'vat_value'       => $this->vat_value,
-            'total'       => $this->total,
-            'status'       => $this->status,
-            'status_value'       => $this->status_value,
-            'note'       => $this->note,
-            'user'       => auth()->user()->name,
+            'total'           => $this->total,
+            'status'          => $this->status,
+            'status_value'    => $this->status_value,
+            'note'            => $this->note,
+            'user'            => auth()->user()->name,
         ]);
         $invoice->save();
-        $this->openModal();
+        $this->closeModal();
         session()->flash('message', 'Invoice successfully Created.');
     }
 
-    public function edit($id)
-    {
+    public function edit($id){
 
         $this->invoiceId = $id;
-        $this->method = 'edit'; // switch to update button
         $invoice = Invoice::find($id);
         $this->invoice_number = $invoice->invoice_number;
         $this->invoice_date = $invoice->invoice_date;
@@ -124,10 +114,9 @@ class Invoices extends Component
         $this->openModal('edit');
     }
 
-    public function update()
-    {
+    public function update() {
         $this->validate();
-        $invoice = Invoice::find($this->invoiceId);
+        $invoice = Invoice::findOrFail($this->invoiceId);
         $invoice->update([
             'invoice_number'   => $this->invoice_number,
             'invoice_date'     => $this->invoice_date,
@@ -144,24 +133,11 @@ class Invoices extends Component
             'user'             => $this->user,
         ]);
         $invoice->save();
-        $this->openModal('edit');
+        $this->closeModal();
         session()->flash('message', 'Invoice successfully Updated.');
     }
 
-    public function confirmDelete($id = '')
-    {
-        $this->confirmModal = !$this->confirmModal;
-        $this->invoiceId = $id;
-    }
 
-    public function delete()
-    {
-
-        $invoice = Invoice::find($this->invoiceId);
-        $invoice->delete();
-        $this->confirmModal = !$this->confirmModal;
-        session()->flash('message', 'Invoice successfully Deleted.');
-    }
 
     public function render()
     {
