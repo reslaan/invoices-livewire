@@ -32,23 +32,23 @@
                     <x-slot name="head">
 
                         <x-table.heading>#</x-table.heading>
-                        <x-table.heading sortable :direction="$sortField === 'invoice_number' ? $sortDirection : null" wire:click="sortBy('invoice_number')">invoice number
+                        <x-table.heading sortable="invoice_number" :sortField="$sortField"  :direction="$sortDirection" >invoice number
                         </x-table.heading>
-                        <x-table.heading sortable :direction="$sortField === 'invoice_date' ? $sortDirection : null" wire:click="sortBy('invoice_date')">invoice date
+                        <x-table.heading sortable="invoice_date" :sortField="$sortField"  :direction="$sortDirection" >invoice date
                         </x-table.heading>
-                        <x-table.heading sortable :direction="$sortField === 'due_date' ? $sortDirection : null" wire:click="sortBy('due_date')">due date
+                        <x-table.heading sortable="due_date" :sortField="$sortField" :direction="$sortDirection" >due date
                         </x-table.heading>
                         <x-table.heading>product</x-table.heading>
-                        <x-table.heading sortable :direction="$sortField === 'discount' ? $sortDirection : null" wire:click="sortBy('discount')">discount
+                        <x-table.heading sortable="discount" :sortField="$sortField" :direction="$sortDirection"  >discount
                         </x-table.heading>
-                        <x-table.heading sortable :direction="$sortField === 'vat_rate' ? $sortDirection : null" wire:click="sortBy('vat_rate')">vat rate
+                        <x-table.heading sortable="vat_rate" :sortField="$sortField"  :direction="$sortDirection">vat rate
                         </x-table.heading>
-                        <x-table.heading sortable :direction="$sortField === 'vat_value' ? $sortDirection : null" wire:click="sortBy('vat_value')">vat value
+                        <x-table.heading sortable="vat_value" :sortField="$sortField" :direction="$sortDirection">vat value
                         </x-table.heading>
-                        <x-table.heading sortable :direction="$sortField === 'total' ? $sortDirection : null" wire:click="sortBy('total')">total</x-table.heading>
-                        <x-table.heading sortable :direction="$sortField === 'status' ? $sortDirection : null" wire:click="sortBy('status')">status
+                        <x-table.heading sortable="total" :sortField="$sortField" :direction="$sortDirection">total</x-table.heading>
+                        <x-table.heading sortable="status" :sortField="$sortField"  :direction="$sortDirection">status
                         </x-table.heading>
-                        <x-table.heading sortable :direction="$sortField === 'user' ? $sortDirection : null" wire:click="sortBy('user')">user</x-table.heading>
+                        <x-table.heading sortable="user" :sortField="$sortField"  :direction="$sortDirection">user</x-table.heading>
                         <x-table.heading>Actions</x-table.heading>
                     </x-slot>
                     {{-- body --}}

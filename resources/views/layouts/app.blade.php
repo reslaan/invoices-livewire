@@ -27,13 +27,13 @@
 
 <body class="font-sans antialiased">
     <div class="min-h-screen  bg-gray-100  overflow-auto">
-        <div class="flex relative">
+        <div x-data="{ openSide: true }" class="flex relative">
 
-            <div class="">
+
                 @include('layouts.sidebar')
 
-            </div>
-            <div class="w-full ml-64 content transition-all duration-500">
+
+            <div :class="openSide ? 'ml-64': 'ml-20'" class="w-full  content transition-all duration-500">
                 @include('layouts.navigation')
 
                 <!-- Page Heading -->

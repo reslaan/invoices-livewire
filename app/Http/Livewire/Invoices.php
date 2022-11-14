@@ -2,21 +2,21 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Livewire\Traits\withModal;
+use App\Http\Livewire\Traits\WithModal;
+use App\Http\Livewire\Traits\WithSortable;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Invoice;
 
 class Invoices extends Component
 {
-    use WithPagination, withModal;
+    use WithPagination, WithModal, WithSortable;
 
 
 
     public $perpage = 10;
     public $search = '';
-    public $sortField = 'id';
-    public $sortDirection = 'asc';
+
 
     public $invoiceId = '';
     public $invoice_number = '';
@@ -49,27 +49,6 @@ class Invoices extends Component
         'note' => ['required', 'string', 'max:255'],
         'user' => ['required', 'string', 'max:255'],
     ];
-
-
-
-
-
-    /// sorting table
-    public function sortBy($field)
-    {
-
-
-
-        if ($this->sortField == $field) {
-
-            $this->sortDirection =  $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        } else {
-            $this->sortDirection = 'asc';
-            $this->sortField = $field;
-        }
-    }
-
-
 
     public function create() {
 
