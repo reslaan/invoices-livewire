@@ -14,7 +14,7 @@
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <x-alert.success></x-alert.success>
             <div class="flex  sm:flex-row justify-between py-4 w-full gap-2">
-                <x-text-input type="search" wire:model="search" class="text-xs w-1/4 placeholder-gray-400"
+                <x-text-input type="search" wire:model="search" class="text-xs w-1/3 sm:w-1/4 placeholder-gray-400"
                     placeholder="search" />
 
                 <x-select wire:model="perpage" class="w-14 ">

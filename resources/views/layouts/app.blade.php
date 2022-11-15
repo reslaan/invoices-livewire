@@ -27,15 +27,14 @@
 
 <body class="font-sans antialiased">
     <div class="min-h-screen  bg-gray-100  overflow-auto">
-        <div x-data="{ openSide: true }" class="flex relative">
+        <div x-data="{ openSide: true }"  class="flex relative">
 
 
                 @include('layouts.sidebar')
 
 
-            <div :class="openSide ? 'ml-64': 'ml-20'" class="w-full  content transition-all duration-500">
+            <div :class="openSide ? 'ml-64':'sm:ml-20'" class="w-full  content transition-all duration-500">
                 @include('layouts.navigation')
-
                 <!-- Page Heading -->
                 @if (isset($header))
                     <header class="bg-white shadow">
