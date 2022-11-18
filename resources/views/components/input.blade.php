@@ -6,7 +6,7 @@
 ])
 <div>
     @if ($label)
-        <label for={{ $target }} class='block font-medium capitalize  text-sm '>
+        <label for={{ $target }} class='block font-medium capitalize  text-sm rtl:text-right'>
             {{ $label }}
         </label>
     @endif

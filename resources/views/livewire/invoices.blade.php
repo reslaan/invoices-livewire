@@ -17,7 +17,7 @@
                 <x-text-input type="search" wire:model="search" class="text-xs w-1/3 sm:w-1/4 placeholder-gray-400"
                     placeholder="search" />
 
-                <x-select wire:model="perpage" class="w-14 ">
+                <x-select wire:model="perpage" class="w-14 rtl:bg-left">
                     <option value="5">5</option>
                     <option value="10" selected>10</option>
                     <option value="15">15</option>

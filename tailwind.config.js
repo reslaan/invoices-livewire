@@ -24,8 +24,12 @@ module.exports = {
                 light: 'hsl(210, 17%, 98%)',
 
               },
+            
         },
     },
 
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require('@tailwindcss/forms'),
+       // require('tailwindcss-rtl')
+    ],
 };

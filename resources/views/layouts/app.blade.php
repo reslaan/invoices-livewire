@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="ltr">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{app()->getLocale() == 'ar' ? 'rtl': 'rtl' }}">
 
 <head>
     <meta charset="utf-8">
@@ -18,8 +18,13 @@
 
     <link rel="stylesheet" type="text/css" href="build/assets/css/app-ar.css">
     {{-- <link rel="stylesheet" type="text/css" href=" {{ app()->getLocale() == 'en' ? asset('public/build/assets/css/app-ar.css') : asset('build/assets/css/app-ar.css')}}" --}}
-         {{-- {{ app()->getLocale() == 'en' ?  @vite(  [  'resources/css/app.css', 'resources/js/app.js']) : @vite(  [  'resources/css/app.css', 'resources/js/app.js']);}} --}}
+    {{-- <link rel="stylesheet" type="text/css" href=" {{ app()->getLocale() == 'en' ?  Vite::asset(['resources/css/app.css' , 'resources/js/app.js'])  : Vite::asset(['resources/css/app-ar.css' , 'resources/js/app.js']) ;}}"> --}}
+{{-- @if ( app()->getLocale() == 'ar')
+@vite(  [  'resources/css/app-ar.css', 'resources/js/app.js'])
+@else
+@vite(  [  'resources/css/app.css', 'resources/js/app.js'])
 
+@endif --}}
          @vite(  [  'resources/css/app.css', 'resources/js/app.js'])
 
     @livewireStyles
@@ -27,13 +32,13 @@
 
 <body class="font-sans antialiased">
     <div class="min-h-screen  bg-gray-100  overflow-auto">
-        <div x-data="{ openSide: true }"  class="flex relative">
+        <div x-data="{ openSide: false }"  class="flex relative">
 
 
                 @include('layouts.sidebar')
 
 
-            <div :class="openSide ? 'ml-64':'sm:ml-20'" class="w-full  content transition-all duration-500">
+            <div :class="openSide ? 'ltr:ml-64 rtl:mr-64':'ltr:sm:ml-20 rtl:sm:mr-20'" class="w-full  content transition-all duration-500">
                 @include('layouts.navigation')
                 <!-- Page Heading -->
                 @if (isset($header))
@@ -45,7 +50,7 @@
                 @endif
 
                 <!-- Page Content -->
-                <main class="">
+                <main class=" text-right">
                     {{ $slot }}
                 </main>
             </div>
