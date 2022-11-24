@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{app()->getLocale() == 'ar' ? 'rtl': 'rtl' }}">
+<html   lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{app()->getLocale() == 'ar' ? 'rtl': 'ltr' }}">
 
 <head>
     <meta charset="utf-8">
@@ -30,9 +30,9 @@
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen  bg-gray-100  overflow-auto">
-        <div x-data="{ openSide: false }"  class="flex relative">
+<body class="font-sans antialiased " x-data="{ darkMode: true }" :class="{'dark' : darkMode}">
+    <div class="min-h-screen  bg-gray-100 dark:bg-gray-800  overflow-auto ">
+        <div x-data="{ openSide: false }"  class="flex relative ">
 
 
                 @include('layouts.sidebar')
@@ -42,7 +42,7 @@
                 @include('layouts.navigation')
                 <!-- Page Heading -->
                 @if (isset($header))
-                    <header class="bg-white shadow">
+                    <header class="bg-white dark:bg-gray-700 shadow">
                         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                             {{ $header }}
                         </div>
@@ -50,7 +50,7 @@
                 @endif
 
                 <!-- Page Content -->
-                <main class=" text-right">
+                <main class=" text-right dark:text-gray-300">
                     {{ $slot }}
                 </main>
             </div>

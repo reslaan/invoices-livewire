@@ -13,6 +13,10 @@ return [
     |
     */
 
+    'showing' => 'عرض',
+    'to' => 'إلى',
+    'of' => 'من',
+    'results' => 'نتيجة',
     'previous' => '&laquo; Previous',
     'next' => 'Next &raquo;',
 

@@ -7,7 +7,7 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
-
+    darkMode: 'class',
     theme: {
         extend: {
             fontFamily: {
@@ -24,7 +24,7 @@ module.exports = {
                 light: 'hsl(210, 17%, 98%)',
 
               },
-            
+
         },
     },
 

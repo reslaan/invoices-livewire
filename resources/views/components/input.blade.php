@@ -4,9 +4,9 @@
     'error' => false,
     'target' => $attributes->wire('model')->value(),
 ])
-<div>
+<div class="rtl:text-right">
     @if ($label)
-        <label for={{ $target }} class='block font-medium capitalize  text-sm rtl:text-right'>
+        <label for={{ $target }} class='block font-medium capitalize  text-sm '>
             {{ $label }}
         </label>
     @endif
@@ -15,13 +15,13 @@
         'type' => 'text',
         'id' => $target,
         'class' =>
-            'w-full rounded-md text-sm shadow-sm border-gray-300 focus:border-gray-400 focus:ring-1.5 focus:ring-gray-300  disabled:opacity-50',
+            'w-full rounded-md text-sm shadow-sm dark:bg-gray-800 dark:text-gray-300 border-gray-300 dark:border-gray-500 focus:border-gray-400 dark:focus:border-gray-500 focus:ring-1.5 focus:ring-gray-300 dark:focus:ring-gray-800 disabled:opacity-50',
     ]) !!}>
 
 
     @if ($error)
         @error($target)
-            <span class="text-sm text-danger">{{ $message }}</span>
+            <span class="text-sm t text-danger">{{ $message }}</span>
         @enderror
     @endif
 </div>

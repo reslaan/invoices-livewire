@@ -12,7 +12,10 @@ return [
     | you want to customize your views to better match your application.
     |
     */
-
+    'showing' => 'Showing',
+    'to' => 'to',
+    'of' => 'of',
+    'results' => 'results',
     'previous' => '&laquo; Previous',
     'next' => 'Next &raquo;',
 

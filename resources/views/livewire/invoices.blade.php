@@ -2,11 +2,14 @@
 
     <x-header>
         <x-slot name="title">
-            Invoices
+            {{ __('app.invoices') }}
         </x-slot>
         <x-button.primary type="button" wire:click="openModal" class="">
             Create Invoice
         </x-button.primary>
+
+
+
     </x-header>
 
 
@@ -14,10 +17,10 @@
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <x-alert.success></x-alert.success>
             <div class="flex  sm:flex-row justify-between py-4 w-full gap-2">
-                <x-text-input type="search" wire:model="search" class="text-xs w-1/3 sm:w-1/4 placeholder-gray-400"
+                <x-text-input type="search" wire:model.debounce.500ms="search" class="text-xs w-1/3 sm:w-1/4  placeholder-gray-400"
                     placeholder="search" />
 
-                <x-select wire:model="perpage" class="w-14 rtl:bg-left">
+                <x-select wire:model="perpage" class="w-14 dark:bg-gray-800 dark:border-gray-600 dark:focus:ring-gray-500 rtl:bg-left">
                     <option value="5">5</option>
                     <option value="10" selected>10</option>
                     <option value="15">15</option>
@@ -26,7 +29,7 @@
 
 
             </div>
-            <div class="bg-white p-4 overflow-auto sm:overflow-x-hidden shadow-sm rounded-lg">
+            <div class="bg-white dark:bg-gray-800 dark:text-gray-300 dark:border border-gray-700 p-4 overflow-auto sm:overflow-x-hidden shadow-sm rounded-lg">
 
                 <x-table>
                     <x-slot name="head">
@@ -143,13 +146,13 @@
                         Cancel
                     </x-button.light>
                     @if ($method == 'edit')
-                        <x-button.primary  wire:click="update" loading="Updating.." wire:loading.attr="disabled"
+                        <x-button.primary  wire:click="update" loading wire:loading.attr="disabled"
                             class="w-full sm:w-auto">
                             Update
                         </x-button.primary>
 
                     @else
-                        <x-button.primary wire:click="create" loading="creating.." wire:loading.attr="disabled"
+                        <x-button.primary wire:click="create"  wire:loading.attr="disabled"
                             class="w-full sm:w-auto">
                             Create
                         </x-button.primary>
